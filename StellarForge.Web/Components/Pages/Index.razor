@@ -1,0 +1,24 @@
+﻿@page "/"
+@using StellarForge.Shared.DTOs
+@using StellarForge.Shared.Services.Interfaces
+@inject ISaveService SaveService
+
+<PageTitle>Index</PageTitle>
+
+<button class="btn btn-primary" @onclick="SaveGame">💾 Save Game</button>
+
+@code {
+    private async Task SaveGame()
+    {
+        Console.WriteLine("SaveGame clicked"); // Debug
+
+        var state = new SaveState
+            {
+                UserId = "player-001", // voorlopig statisch
+                GameJson = "{\"resources\":{\"titanium\":123}}", // testinhoud
+                SavedAt = DateTime.UtcNow
+            };
+
+        await SaveService.SaveAsync(state);
+    }
+}

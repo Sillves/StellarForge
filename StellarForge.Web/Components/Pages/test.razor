@@ -1,0 +1,11 @@
+﻿@page "/Test"
+<h1>Testpagina</h1>
+
+<button class="btn btn-primary" @onclick="TestClick">Klik mij</button>
+
+@code {
+    private void TestClick()
+    {
+        Console.WriteLine("✅ Knop klik werkt!");
+    }
+}
