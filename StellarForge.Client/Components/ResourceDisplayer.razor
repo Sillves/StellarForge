@@ -1,0 +1,45 @@
+﻿@using StellarForge.Client.Services
+@using StellarForge.Shared.Models
+@using StellarForge.Shared.Services.Interfaces
+
+@inject IGameStateService Game
+@implements IDisposable
+
+<ul class="resource-list">
+    @foreach (var resource in Game.AllResources)
+    {
+        <li class="resource-item">
+            <strong>@resource.Key:</strong> @Math.Floor(resource.Value.Amount)
+        </li>
+    }
+</ul>
+
+<style>
+    .resource-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .resource-item {
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+</style>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        Game.OnStateChanged += OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Game.OnStateChanged -= OnGameStateChanged;
+    }
+}
