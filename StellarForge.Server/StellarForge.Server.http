@@ -1,6 +1,0 @@
-@StellarForge.Server_HostAddress = http://localhost:5007
-
-GET {{StellarForge.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
