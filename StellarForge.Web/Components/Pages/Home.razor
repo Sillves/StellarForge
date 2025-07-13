@@ -1,21 +1,26 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 @using StellarForge.Shared.DTOs
 @using StellarForge.Shared.Services.Interfaces
 @inject ISaveService SaveService
 
 <PageTitle>Index</PageTitle>
 
+<h1>Test Page</h1>
 <button class="btn btn-primary" @onclick="SaveGame">💾 Save Game</button>
+<p>Debug: @debugMessage</p>
 
 @code {
+    private string debugMessage = "Pagina geladen";
+
     private async Task SaveGame()
     {
-        Console.WriteLine("SaveGame clicked"); // Debug
+        Console.WriteLine("SaveGame clicked");
 
         var state = new SaveState
             {
-                UserId = "player-001", // voorlopig statisch
-                GameJson = "{\"resources\":{\"titanium\":123}}", // testinhoud
+                UserId = "player-001",
+                GameJson = "{\"resources\":{\"titanium\":123}}",
                 SavedAt = DateTime.UtcNow
             };
 
